@@ -21,4 +21,5 @@ var musics: [Music] = [
     .init(Name: "العيد هل هلاله",pathName: "aleidHalHelalah", singer: "محمود الكويتي", url: URL(string: "https://www.youtube.com/watch?v=DbTuGa80nlI")!),
     .init(Name: "سنغني",pathName: "weWillSing", singer: "زين", url: URL(string: "https://www.youtube.com/watch?v=3KNIgCNBwYk")!),
     .init(Name: "الله الله اتانا العيد",pathName: "allahAllah", singer: "زين", url: URL(string: "https://www.youtube.com/watch?v=qJfcQy2EcJE")!),
+    
 ]

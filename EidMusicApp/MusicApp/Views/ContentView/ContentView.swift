@@ -47,13 +47,15 @@ extension ContentView {
                 .scaledToFit()
                 .frame(width: 300, height: 300)
             
-            Text(vm.currentMusic.Name)
-                .foregroundColor(.prime)
-                .font(.system(size: 40, weight: .semibold, design: .default))
-            
-            Text(vm.currentMusic.singer)
-                .foregroundColor(.sec)
-                .font(.system(size: 20, weight: .regular, design: .default))
+            VStack(alignment: .trailing, spacing: 10) {
+                Text(vm.currentMusic.Name)
+                    .foregroundColor(.prime)
+                    .font(.system(size: 40, weight: .semibold, design: .default))
+                
+                Text(vm.currentMusic.singer)
+                    .foregroundColor(.sec)
+                    .font(.system(size: 25, weight: .regular, design: .default))
+            }
         }
     }
     
