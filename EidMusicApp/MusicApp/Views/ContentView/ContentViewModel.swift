@@ -9,7 +9,6 @@ import SwiftUI
 import AVFoundation
 import MediaPlayer
 
-
 class ContentViewModel: NSObject, ObservableObject {
     @Published var music: AVAudioPlayer!
     @Published var isPlaying = false
@@ -78,10 +77,12 @@ class ContentViewModel: NSObject, ObservableObject {
         
         commandCenter.playCommand.addTarget { [weak self] (event) -> MPRemoteCommandHandlerStatus in
             self?.music.play()
+            self?.isPlaying = true
             return .success
         }
         commandCenter.pauseCommand.addTarget { [weak self] (event) -> MPRemoteCommandHandlerStatus in
             self?.music.pause()
+            self?.isPlaying = false
             return .success
         }
         commandCenter.nextTrackCommand.addTarget { [weak self] (event) -> MPRemoteCommandHandlerStatus in
