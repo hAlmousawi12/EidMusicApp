@@ -77,10 +77,10 @@ extension ContentView {
                 Image(systemName: "backward.end.fill")
                     .resizable()
                     .scaledToFit()
-                    .foregroundColor(.prime)
+                    .foregroundColor(!vm.isRepeated && vm.i == 0 ? .sec : .prime)
                     .frame(width: 30, height: 30)
                     .padding()
-            }
+            }.disabled(!vm.isRepeated && vm.i == 0)
             
             Button(action: vm.playMusic) {
                 Image(systemName: vm.isPlaying ? "pause.circle.fill" : "play.circle.fill")
@@ -95,11 +95,11 @@ extension ContentView {
                 Image(systemName: "forward.end.fill")
                     .resizable()
                     .scaledToFit()
-                    .foregroundColor(.prime)
+                    .foregroundColor(!vm.isRepeated && vm.i == (musics.count-1) ? .sec : .prime)
                     .frame(width: 30, height: 30)
                     .padding()
-                
-            }
+                    
+            }.disabled(!vm.isRepeated && vm.i == (musics.count-1))
             
             Button {
                 vm.isRepeated.toggle()
