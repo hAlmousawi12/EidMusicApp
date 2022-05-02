@@ -61,36 +61,58 @@ extension ContentView {
     
     var PNP: some View {
         HStack {
-            Image(systemName: "backward.end.fill")
-                .resizable()
-                .scaledToFit()
-                .foregroundColor(.prime)
-                .frame(width: 50, height: 50)
-                .padding()
-                .onTapGesture {
-                    vm.prevMusic()
-                }
             
+            Button {
+                vm.isShuffle.toggle()
+            } label: {
+                Image(systemName: "shuffle")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(vm.isShuffle ? .prime : .sec)
+                    .frame(width: 30, height: 30)
+                    .padding()
+            }
             
-            Image(systemName: vm.isPlaying ? "pause.circle.fill" : "play.circle.fill")
-                .resizable()
-                .scaledToFit()
-                .foregroundColor(.prime)
-                .frame(width: 50, height: 50)
-                .padding()
-                .onTapGesture {
-                    vm.playMusic()
-                }
+            Button(action: vm.prevMusic) {
+                Image(systemName: "backward.end.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(.prime)
+                    .frame(width: 30, height: 30)
+                    .padding()
+            }
             
-            Image(systemName: "forward.end.fill")
-                .resizable()
-                .scaledToFit()
-                .foregroundColor(.prime)
-                .frame(width: 50, height: 50)
-                .padding()
-                .onTapGesture {
-                    vm.NextMusic()
-                }
+            Button(action: vm.playMusic) {
+                Image(systemName: vm.isPlaying ? "pause.circle.fill" : "play.circle.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(.prime)
+                    .frame(width: 50, height: 50)
+                    .padding()
+            }
+            
+            Button(action: vm.NextMusic) {
+                Image(systemName: "forward.end.fill")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(.prime)
+                    .frame(width: 30, height: 30)
+                    .padding()
+                
+            }
+            
+            Button {
+                vm.isRepeated.toggle()
+            } label: {
+                Image(systemName: "repeat")
+                    .resizable()
+                    .scaledToFit()
+                    .foregroundColor(vm.isRepeated ? .prime : .sec)
+                    .frame(width: 30, height: 30)
+                    .padding()
+            }
+            
+
         }
     }
     

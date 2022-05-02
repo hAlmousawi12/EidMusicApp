@@ -10,10 +10,14 @@ import AVFoundation
 import MediaPlayer
 
 class ContentViewModel: NSObject, ObservableObject {
+    var meow = [-1, 0, 1, 2, 3]
+    
     @Published var music: AVAudioPlayer!
     @Published var isPlaying = false
     @Published var i = 0
     @Published var currentMusic: Music = musics[0]
+    @Published var isRepeated = false
+    @Published var isShuffle = false
     
     
     func setupAVAudioSession() {
@@ -50,6 +54,9 @@ class ContentViewModel: NSObject, ObservableObject {
     }
     
     func NextMusic() {
+        if isShuffle {
+            i = meow.randomElement()!
+        }
         if isPlaying {
             music.stop()
             isPlaying = false
@@ -118,7 +125,22 @@ class ContentViewModel: NSObject, ObservableObject {
 extension ContentViewModel: AVAudioPlayerDelegate {
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         guard flag else { return }
-
-        self.NextMusic()
+        
+        if isRepeated {
+            if isShuffle {
+                i = meow.randomElement()!
+            }
+            self.NextMusic()
+            
+        } else if i != (musics.count - 1) {
+            if isShuffle {
+                i = meow.randomElement()!
+            }
+            self.NextMusic()
+            
+        } else {
+            self.isPlaying = false
+            music.stop()
+        }
     }
 }
